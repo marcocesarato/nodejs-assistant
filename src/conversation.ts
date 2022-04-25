@@ -55,14 +55,9 @@ export class Conversation extends EventEmitter {
   }
 
   public end(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this._stream.end((err: Error) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
-      });
+    return new Promise(resolve => {
+      this._stream.end();
+      resolve();
     });
   }
 
