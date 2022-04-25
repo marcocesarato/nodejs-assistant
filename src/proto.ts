@@ -4,7 +4,7 @@ import {
   ChannelCredentials,
   ClientDuplexStream,
   loadPackageDefinition,
-} from 'grpc';
+} from '@grpc/grpc-js';
 
 // Service that implements the Google Assistant API.
 export declare class EmbeddedAssistant {
@@ -15,11 +15,11 @@ export declare class EmbeddedAssistant {
   // and receiving the audio response. Uses bidirectional streaming to receive
   // results, such as the `END_OF_UTTERANCE` event, while sending audio.
   //
-  // A conversation is one or more gRPC connections, each consisting of several
+  // A conversation is one or more @grpc/grpc-js connections, each consisting of several
   // streamed requests and responses.
   // For example, the user says *Add to my shopping list* and the Assistant
   // responds *What do you want to add?*. The sequence of streamed requests and
-  // responses in the first gRPC message could be:
+  // responses in the first @grpc/grpc-js message could be:
   //
   // *   AssistRequest.config
   // *   AssistRequest.audioIn
@@ -35,7 +35,7 @@ export declare class EmbeddedAssistant {
   //
   //
   // The user then says *bagels* and the Assistant responds
-  // *OK, I've added bagels to your shopping list*. This is sent as another gRPC
+  // *OK, I've added bagels to your shopping list*. This is sent as another @grpc/grpc-js
   // connection call to the `Assist` method, again with streamed requests and
   // responses, such as:
   //
@@ -93,8 +93,8 @@ export enum AssistResponseEventType {
   // speech utterance and expects no additional speech. Therefore, the server
   // will not process additional audio (although it may subsequently return
   // additional results). The client should stop sending additional audio
-  // data, half-close the gRPC connection, and wait for any additional results
-  // until the server closes the gRPC connection.
+  // data, half-close the @grpc/grpc-js connection, and wait for any additional results
+  // until the server closes the @grpc/grpc-js connection.
   END_OF_UTTERANCE = 1,
 }
 
